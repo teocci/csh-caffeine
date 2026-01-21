@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:caffeine.Views"
         mc:Ignorable="d"
         Title="About Caffeine"
-        Width="450" Height="400"
+        Width="500" Height="450"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         Background="#F5F5F5">
@@ -100,10 +100,10 @@
             <!-- GitHub Link -->
             <TextBlock HorizontalAlignment="Center"
                        Margin="0,10,0,0">
-                <Hyperlink NavigateUri="{Binding GitHubUrl}"
+                <Hyperlink NavigateUri="{Binding GitHubUrl, Mode=OneWay}"
                            RequestNavigate="Hyperlink_RequestNavigate"
                            Foreground="#0366D6">
-                    <Run Text="{Binding GitHubUrl}"/>
+                    <Run Text="{Binding GitHubUrl, Mode=OneWay}"/>
                 </Hyperlink>
             </TextBlock>
         </StackPanel>

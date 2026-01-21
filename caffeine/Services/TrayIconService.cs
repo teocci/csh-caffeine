@@ -115,10 +115,14 @@ public class TrayIconService : IDisposable
         var toggleItem = new MenuItem
         {
             Header = "Keep awake",
-            IsCheckable = true,
-            IsChecked = _viewModel.IsAwake
+            IsCheckable = true
         };
-        toggleItem.SetBinding(MenuItem.IsCheckedProperty, nameof(TrayMenuViewModel.IsAwake));
+        var isAwakeBinding = new System.Windows.Data.Binding(nameof(TrayMenuViewModel.IsAwake))
+        {
+            Source = _viewModel,
+            Mode = System.Windows.Data.BindingMode.OneWay
+        };
+        toggleItem.SetBinding(MenuItem.IsCheckedProperty, isAwakeBinding);
         toggleItem.Click += (s, e) => _viewModel.ToggleCommand.Execute(null);
         menu.Items.Add(toggleItem);
 
