@@ -1,0 +1,13 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:tb="clr-namespace:H.NotifyIcon;assembly=H.NotifyIcon.Wpf">
+
+    <!-- TaskbarIcon for system tray - context menu and events are wired programmatically in TrayIconService -->
+    <tb:TaskbarIcon
+        x:Key="CaffeineTrayIcon"
+        IconSource="/Assets/Icons/tray-inactive.ico"
+        ToolTipText="Caffeine - Inactive"
+        MenuActivation="RightClick"
+        NoLeftClickDelay="True" />
+
+</ResourceDictionary>

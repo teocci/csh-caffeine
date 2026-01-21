@@ -1,0 +1,119 @@
+<Window x:Class="caffeine.Views.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:caffeine.Views"
+        mc:Ignorable="d"
+        Title="About Caffeine"
+        Width="450" Height="400"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="#F5F5F5">
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- App Title -->
+        <TextBlock Grid.Row="0"
+                   Text="☕ Caffeine"
+                   FontSize="32"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   Foreground="#6F4E37"
+                   Margin="0,0,0,10"/>
+
+        <!-- Version -->
+        <TextBlock Grid.Row="1"
+                   Text="{Binding Version, StringFormat='Version {0}'}"
+                   FontSize="14"
+                   HorizontalAlignment="Center"
+                   Foreground="#666"
+                   Margin="0,0,0,5"/>
+
+        <!-- Tagline -->
+        <TextBlock Grid.Row="2"
+                   Text="Keep your PC awake, effortlessly."
+                   FontSize="14"
+                   HorizontalAlignment="Center"
+                   Foreground="#888"
+                   Margin="0,0,0,20"/>
+
+        <!-- Separator -->
+        <Border Grid.Row="3"
+                Background="#DDD"
+                Height="1"
+                Margin="0,10"/>
+
+        <!-- Support Section -->
+        <StackPanel Grid.Row="4"
+                    Margin="0,20,0,0">
+            <TextBlock Text="Support Development"
+                       FontSize="16"
+                       FontWeight="SemiBold"
+                       HorizontalAlignment="Center"
+                       Foreground="#333"
+                       Margin="0,0,0,15"/>
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="0,0,0,20">
+                <Button Content="☕ Buy Me a Coffee"
+                        Click="BuyMeCoffee_Click"
+                        Padding="15,8"
+                        FontSize="13"
+                        Background="#FFDD00"
+                        BorderBrush="#DAA520"
+                        BorderThickness="1"
+                        Cursor="Hand">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+                <Button Content="🎨 Patreon"
+                        Click="Patreon_Click"
+                        Padding="15,8"
+                        FontSize="13"
+                        Margin="15,0,0,0"
+                        Background="#FF424D"
+                        Foreground="White"
+                        BorderBrush="#E13C4C"
+                        BorderThickness="1"
+                        Cursor="Hand">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </StackPanel>
+
+            <!-- GitHub Link -->
+            <TextBlock HorizontalAlignment="Center"
+                       Margin="0,10,0,0">
+                <Hyperlink NavigateUri="{Binding GitHubUrl}"
+                           RequestNavigate="Hyperlink_RequestNavigate"
+                           Foreground="#0366D6">
+                    <Run Text="{Binding GitHubUrl}"/>
+                </Hyperlink>
+            </TextBlock>
+        </StackPanel>
+
+        <!-- Copyright -->
+        <TextBlock Grid.Row="5"
+                   Text="{Binding Copyright}"
+                   FontSize="12"
+                   HorizontalAlignment="Center"
+                   Foreground="#999"
+                   Margin="0,20,0,0"/>
+    </Grid>
+</Window>
