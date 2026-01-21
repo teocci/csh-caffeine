@@ -89,17 +89,17 @@ public class StartupService
     /// Gets the path to the application executable.
     /// </summary>
     /// <returns>The full path to the executable.</returns>
-    private string GetExecutablePath()
+    private static string GetExecutablePath()
     {
-        // Try to get the main module path first (works for published apps)
-        var mainModule = Process.GetCurrentProcess().MainModule;
-        if (mainModule?.FileName != null)
+        // Environment.ProcessPath works for both single-file and normal deployments
+        if (Environment.ProcessPath is { } processPath)
         {
-            return mainModule.FileName;
+            return processPath;
         }
 
-        // Fallback to assembly location (works for development)
-        return Assembly.GetExecutingAssembly().Location.Replace(".dll", ".exe");
+        // Fallback to main module path
+        return Process.GetCurrentProcess().MainModule?.FileName
+            ?? throw new InvalidOperationException("Unable to determine executable path.");
     }
 
     /// <summary>

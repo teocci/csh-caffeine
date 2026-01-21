@@ -71,8 +71,9 @@ public class TrayIconService : IDisposable
         // Wire up commands
         WireUpCommands();
 
-        // Sync icon with initial state (XAML defaults to inactive, but app starts active)
+        // Sync icon and tooltip with initial state (XAML defaults to inactive, but app starts active)
         UpdateIcon(_viewModel.CurrentState);
+        _taskbarIcon.ToolTipText = _viewModel.TooltipText;
 
         Debug.WriteLine("[TrayIconService] Initialized");
     }
@@ -114,7 +115,8 @@ public class TrayIconService : IDisposable
         var toggleItem = new MenuItem
         {
             Header = "Keep awake",
-            IsCheckable = true
+            IsCheckable = true,
+            IsChecked = _viewModel.IsAwake
         };
         toggleItem.SetBinding(MenuItem.IsCheckedProperty, nameof(TrayMenuViewModel.IsAwake));
         toggleItem.Click += (s, e) => _viewModel.ToggleCommand.Execute(null);

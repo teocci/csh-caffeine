@@ -7,6 +7,15 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <UseWPF>true</UseWPF>
+        <ApplicationIcon>Assets\Icons\caffeine.ico</ApplicationIcon>
+    </PropertyGroup>
+
+    <!-- Single-file publishing configuration -->
+    <PropertyGroup Condition="'$(PublishSingleFile)' == 'true'">
+        <SelfContained>true</SelfContained>
+        <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+        <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
+        <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
     </PropertyGroup>
 
     <ItemGroup>
@@ -22,10 +31,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <!-- Notification sound - copy to output directory -->
-      <None Include="Assets\Sounds\notification.wav" Condition="Exists('Assets\Sounds\notification.wav')">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
+      <!-- Notification sound - embedded resource for single-file compatibility -->
+      <EmbeddedResource Include="Assets\Sounds\notification.wav" Condition="Exists('Assets\Sounds\notification.wav')">
+        <LogicalName>notification.wav</LogicalName>
+      </EmbeddedResource>
     </ItemGroup>
 
 </Project>

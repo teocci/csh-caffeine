@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Media;
+using System.Reflection;
 using caffeine.Models;
 using Microsoft.Toolkit.Uwp.Notifications;
 
@@ -19,26 +20,26 @@ public class NotificationService
     /// </summary>
     public NotificationService()
     {
-        // Try to load notification sound file
-        string soundPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
-            "Assets", "Sounds", "notification.wav");
-
-        if (File.Exists(soundPath))
+        // Try to load notification sound from embedded resource (for single-file compatibility)
+        try
         {
-            try
+            var assembly = Assembly.GetExecutingAssembly();
+            var stream = assembly.GetManifestResourceStream("notification.wav");
+
+            if (stream != null)
             {
-                _soundPlayer = new SoundPlayer(soundPath);
+                _soundPlayer = new SoundPlayer(stream);
                 _soundPlayer.Load();
-                Debug.WriteLine($"[NotificationService] Notification sound loaded from {soundPath}");
+                Debug.WriteLine("[NotificationService] Notification sound loaded from embedded resource");
             }
-            catch (Exception ex)
+            else
             {
-                Debug.WriteLine($"[NotificationService] Failed to load sound: {ex.Message}");
+                Debug.WriteLine("[NotificationService] Notification sound not found in embedded resources. Sound notifications will be silent.");
             }
         }
-        else
+        catch (Exception ex)
         {
-            Debug.WriteLine($"[NotificationService] Notification sound not found at {soundPath}. Sound notifications will be silent.");
+            Debug.WriteLine($"[NotificationService] Failed to load sound: {ex.Message}");
         }
     }
 

@@ -5,8 +5,8 @@
     <!-- TaskbarIcon for system tray - context menu and events are wired programmatically in TrayIconService -->
     <tb:TaskbarIcon
         x:Key="CaffeineTrayIcon"
-        IconSource="/Assets/Icons/tray-inactive.ico"
-        ToolTipText="Caffeine - Inactive"
+        IconSource="/Assets/Icons/tray-active.ico"
+        ToolTipText="Caffeine: Active"
         MenuActivation="RightClick"
         NoLeftClickDelay="True" />
 

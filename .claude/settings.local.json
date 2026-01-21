@@ -38,7 +38,8 @@
       "Bash(py -m pip:*)",
       "Bash(if not exist \"d:\\\\Teocci\\\\Devs\\\\csharp\\\\csh-caffeine\\\\caffeine\\\\Assets\\\\Icons\" mkdir \"d:\\\\Teocci\\\\Devs\\\\csharp\\\\csh-caffeine\\\\caffeine\\\\Assets\\\\Icons\")",
       "Bash(py convert_to_ico.py:*)",
-      "Bash(where:*)"
+      "Bash(where:*)",
+      "Bash(dotnet publish:*)"
     ]
   }
 }
